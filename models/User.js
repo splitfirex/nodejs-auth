@@ -6,7 +6,14 @@ var User = function (data) {
     this.data = this.sanitize(data);
 }
 
+User.prototype.newInstance = function (data) {
+    return new User(data);
+}
+
+User.prototype.tableName = "user";
+
 User.prototype.data = {}
+
 
 User.prototype.get = function (name) {
     return this.data[name];
@@ -18,7 +25,7 @@ User.prototype.set = function (name, value) {
 
 User.prototype.sanitize = function (data) {
     data = data || {};
-    schema = schemas.user;
+    schema = schemas.DBusers.user;
     return _.pick(_.defaults(data, schema), _.keys(schema)); 
 }
 
